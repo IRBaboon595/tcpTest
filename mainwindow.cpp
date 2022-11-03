@@ -19,7 +19,9 @@ MainWindow::MainWindow(QWidget *parent)
     td_1->setPort(ProtocolType::TCP, DirectionType::Blank, 7071);
     td_1->connectToServer(ProtocolType::TCP);
 
-    td->setPort(ProtocolType::UDP, DirectionType::Host, 8082);
+    td->setIPAddress(ProtocolType::UDP, DirectionType::Host, tempIP);
+    td->setPort(ProtocolType::UDP, DirectionType::Host, 7072);
+    td->setPort(ProtocolType::UDP, DirectionType::Client, 8081);
     td->connectToServer(ProtocolType::UDP);
 
     connect(td, SIGNAL(tcpReceived()), this, SLOT(showTcpMessage()));
@@ -72,7 +74,7 @@ void MainWindow::on_setSocketButton_clicked()
 {
     QString str = ui->ip4LineEdit_3->text() + '.' + ui->ip4LineEdit_2->text() + '.' + ui->ip4LineEdit_1->text() + '.' + ui->ip4LineEdit_0->text();
     td->setPort(ProtocolType::UDP, DirectionType::Client, ui->udpPortLineEdit->text().toUInt());
-    td->setIPAddress(ProtocolType::UDP, DirectionType::Client, str);
+    td->setIPAddress(ProtocolType::UDP, DirectionType::Host, str);
     //td->connectToServer(ProtocolType::UDP);
 }
 

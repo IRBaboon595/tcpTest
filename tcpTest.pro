@@ -35,3 +35,5 @@ include(../qmsgpack/qmsgpack.pri)
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+LIBS *= -liphlpapi -lpsapi -lws2_32 -lole32 -lgdi32
