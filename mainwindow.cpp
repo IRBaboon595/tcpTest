@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     td->setIPAddress(ProtocolType::UDP, DirectionType::Host, tempIP);
     td->setPort(ProtocolType::UDP, DirectionType::Host, 7072);
-    td->setPort(ProtocolType::UDP, DirectionType::Client, 8081);
+    td->setPort(ProtocolType::UDP, DirectionType::Client, 5026);
     td->connectToServer(ProtocolType::UDP);
 
     connect(td, SIGNAL(tcpReceived()), this, SLOT(showTcpMessage()));

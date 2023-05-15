@@ -162,7 +162,7 @@ void TcpUdpTranslator::write(ProtocolType type, QByteArray data)
         this->m_tcpSocket->write(data);
         break;
     case ProtocolType::UDP:
-        his->m_udpSocket->writeDatagram(data, QHostAddress(m_udpHostIPAddr), m_udpDstPort);
+        this->m_udpSocket->writeDatagram(data, QHostAddress(m_udpHostIPAddr), m_udpDstPort);
         break;
     }
 }
@@ -174,13 +174,13 @@ bool TcpUdpTranslator::startUdp()
     bool result = m_udpSocket->bind(QHostAddress::AnyIPv4, m_udpSrcPort,
                                   QUdpSocket::ShareAddress | QUdpSocket::ReuseAddressHint);
 
-    /*if (QHostAddress(m_udpHostIPAddr).isMulticast())
+    if (QHostAddress("239.1.2.3").isMulticast())
     {
         static const QVariant multiCastUDPconst(1);
 
         m_udpSocket->setSocketOption(QAbstractSocket::MulticastTtlOption, multiCastUDPconst);      //проблема с записью числа int '1'; решил её использовав статик конст QVariant со значением интовой 1
-        m_udpSocket->joinMulticastGroup(QHostAddress(m_udpHostIPAddr));
-    }*/
+        m_udpSocket->joinMulticastGroup(QHostAddress("239.1.2.3"));
+    }
 
     return result;
 }
